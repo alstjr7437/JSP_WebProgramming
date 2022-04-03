@@ -16,7 +16,7 @@
 		int password = Integer.parseInt(request.getParameter("password"));
 		String text  = request.getParameter("text");
 		
-		 
+		//출력 부분
 		out.println("카테고리 : "+ cate + "<br>");
 		out.println("제목 : "+ name + "<br>");
 		out.println("작성자 : "+ human + "<br>");
