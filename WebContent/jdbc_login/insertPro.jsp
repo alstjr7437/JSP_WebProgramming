@@ -3,6 +3,7 @@
 		import = "java.sql.*"    
 %>
 <%
+	//언어 설정
 	request.setCharacterEncoding("utf-8");
 
 	//클라이언트에서 전달된 데이터
@@ -19,23 +20,25 @@
 	String password="1111";
 	Connection con = DriverManager.getConnection(url, user, password);
 	
-	//3. SQL문 
+	//3. SQL문(인서트로 삽입하기)
 	String sql = "insert into login(id, name, pwd) values(?, ?, ?)";
 	
-	//4. SQL 실행
-	//Statement stmt = con.createStatement();
+	//4. SQL 실행하기
 	PreparedStatement pstmt = con.prepareStatement(sql);
+	
+	//첫번째부터 id name pwd를 ?로 처리했기 때문에 순서대로 사용
 	pstmt.setString(1, id);
 	pstmt.setString(2, name);
 	pstmt.setString(3, pwd);
 	
+	//변경하는 쿼리를 쓸때 executeUpdate를 이용
 	int i = pstmt.executeUpdate();
-	//int i = stmt.executeUpdate(sql);
 	
 	//5.객체 해지
 	pstmt.close();
 	con.close();
-	
+
+	//페이지 수행하고 list페이지를 이동하기 위한 코드
 	response.sendRedirect("list.jsp");
 %>
 <!DOCTYPE html>
