@@ -35,7 +35,7 @@
 	pstmt.close();
 	con.close();
 %>    
-    
+    	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +55,7 @@
       <input type="text" class="form-control" id="name" name="name" value ="<%=name %>">
     </div>
     <div class="form-group">
-      <label for="pwd">Password:</label>
+      <label for="pwd">Password:</label>	
       <input type="password" class="form-control" id="pwd" name="pwd" value ="<%=pwd %>">
     </div>
 
