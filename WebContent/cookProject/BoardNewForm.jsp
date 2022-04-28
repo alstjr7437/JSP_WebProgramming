@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>로그인</title>
+  <title>게시판 작성하기</title>
   <meta charset="utf-8">
 <body>
-
  <form action="BoardNewPro.jsp" method = "post">
     <table>
         <tr>
@@ -47,8 +46,10 @@
             </td>
         </tr>	
     </table>
-    <input type="submit" value="작성하기">
+    <input type="submit" value="작성하기"> 
 </form>
+<br>
+<input type="submit" value="조회하기" onclick="location.href='BoardList.jsp'">
 
 </body>
 </html>

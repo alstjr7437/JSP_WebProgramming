@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"
     import ="java.sql.*" %>
 <%
-	//list에서 받아온 id 저장
+	//list에서 받아온 num 저장
 	String num = request.getParameter("num");
 
 	//1. DBCP로 변경
@@ -18,7 +18,7 @@
 	//1-4. 커넥션 풀로 부터 커넥션 객체를 얻어냄
 	Connection con = ds.getConnection();
 	
-	//3. 연결 설정(select문으로 id 맞는값 찾아오기)
+	//3. 연결 설정(select문으로 num에 맞는값 찾아오기)
 	String sql = "select * from member where num =?";
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	pstmt.setString(1, num);
@@ -35,7 +35,7 @@
 	String email = "";
 	String rdate = "";
 	
-	//차례대로 id가 있는지 확인해서 name이랑 pwd 붙여주기
+	//차례대로 num에 맞는 데이터 변수 넣어주기
 	if(rs.next()){
 		id = rs.getString("id");
 		pwd = rs.getString("pwd");
@@ -55,7 +55,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>회원 업데이트</title>
+  <title>회원정보 업데이트</title>
   <meta charset="utf-8">
 <body>
 
@@ -84,7 +84,8 @@
         <tr>
             <td>성 별</td>
             <td>
-            <% if(gender.equals("남")) {
+            <% //데이터에 성별에 따른 체크 다르게 해주기
+            if(gender.equals("남")) {
             	out.println("<input type='radio' name = 'gender' value='남' checked>남 <input type='radio' name = 'gender' value='여'>여");
             } else {
             	out.println("<input type='radio' name = 'gender' value='남' >남 <input type='radio' name = 'gender' value='여' checked>여");

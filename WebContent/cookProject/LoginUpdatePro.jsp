@@ -9,7 +9,7 @@
 	//언어 설정
 	request.setCharacterEncoding("utf-8");
 	
-	//클라이언트에서 전달된 데이터
+	// UpdateForm에서  전달된 데이터
 	String num = request.getParameter("num");
 	String id = request.getParameter("id");
 	String pwd = request.getParameter("pwd");

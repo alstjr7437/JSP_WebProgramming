@@ -46,7 +46,7 @@
 	<title>Delete</title>
 </head>
 <body>
- 	<%=num %>의 데이터가 삭제되었습니다!
+ 	고유번호 <%=num %>의 데이터가 삭제되었습니다!
 </body>
 </html>
 	

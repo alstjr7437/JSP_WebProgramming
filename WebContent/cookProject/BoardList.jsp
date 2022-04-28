@@ -25,18 +25,19 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>login 데이터 조회</title>
+	<title>게시판 데이터 조회</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body><div><h2 style = "text-align:center">게시판 조회</h2></div>
-	
+<body>
+
+<div><h2 style = "text-align:center">게시판 조회</h2></div>	
 <div class="container">
 	<table class="table table-bordered">
-	<caption style = "text-align:end;"> <input type="submit" value ="생성" onclick = "location.href=BoardNewForm.jsp"> </caption>
+	<caption style = "text-align:end;"> <input type="submit" value ="생성" onclick = "location.href='BoardNewForm.jsp'"> </caption>
 	<thead>
 		<tr>
 			<th>고유번호</th>
@@ -53,7 +54,7 @@
 	<tbody>
 		<tr>
 			<%	
-				//4. 반환데이터 출력(html 보일부분 수정)
+				// 반환데이터 값 가져오기
 				while(rs.next()){
 					String num = rs.getString("num");
 					String bname = rs.getString("bname");
@@ -65,7 +66,7 @@
 					String bview = rs.getString("bview");
 					String bdate = rs.getString("bdate");
 			%>
-			<!-- updateForm에 id값 넘겨주기 -->
+			<!-- updateForm에 num값 넘겨주기 -->
 			<td><a href="BoardUpdateForm.jsp?num=<%=num %>"><%=num %></td>
 			<td><%=bname %></td>
 			<td><%=bpwd %></td>

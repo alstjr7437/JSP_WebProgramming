@@ -27,6 +27,7 @@
 	//4. SQL 실행
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	System.out.println(sql);
+	//num 값 데이터 넣어주기
 	pstmt.setString(1, num);
 
 	//변경하는 쿼리를 쓸때 executeUpdate를 이용
@@ -46,7 +47,7 @@
 	<title>Delete</title>
 </head>
 <body>
- 	<%=num %>의 데이터가 삭제되었습니다!
+ 	고유번호 <%=num %>의 데이터가 삭제되었습니다!
 </body>
 </html>
 	

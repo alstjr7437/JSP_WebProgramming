@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"
     import ="java.sql.*" %>
 <%
-	//list에서 받아온 id 저장
+	//list에서 받아온  num 저장
 	String num = request.getParameter("num");
 
 	//1. DBCP로 변경
@@ -18,7 +18,7 @@
 	//1-4. 커넥션 풀로 부터 커넥션 객체를 얻어냄
 	Connection con = ds.getConnection();
 	
-	//2. 연결 설정(select문으로 id 맞는값 찾아오기)
+	//2. 연결 설정(select문으로 num에 맞는값 찾아오기)
 	String sql = "select * from board where num =?";
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	pstmt.setString(1, num);
@@ -33,7 +33,7 @@
 	String btag = "";
 	String bdate = "";
 	
-	//차례대로 num이 있는지 확인해서 붙여주기
+	//차례대로 num에 맞는 데이터 변수 넣어주기
 	if(rs.next()){
 		bname = rs.getString("bname");
 		bpwd = rs.getString("bpwd");
@@ -51,7 +51,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>로그인</title>
+  <title>게시판 수정</title>
   <meta charset="utf-8">
 <body>
 
@@ -72,7 +72,8 @@
         <tr>
             <td>유형</td>
             <td>
-            <% if(btype.equals("잡")) {
+            <% //if문으로 타입의 이름에 따른 체크 다르게 설정 하기
+            if(btype.equals("잡")) {
             	out.println("<input type='radio' name = 'btype' value='잡' checked>잡 <input type='radio' name = 'btype' value='QnA'>QnA <input type='radio' name = 'btype' value='레시피'>레시피 <input type='radio' name = 'btype' value='이벤트'>이벤트");
             } else if(btype.equals("QnA")) {
             	out.println("<input type='radio' name = 'btype' value='잡' >잡 <input type='radio' name = 'btype' value='QnA' checked>QnA <input type='radio' name = 'btype' value='레시피'>레시피 <input type='radio' name = 'btype' value='이벤트'>이벤트");

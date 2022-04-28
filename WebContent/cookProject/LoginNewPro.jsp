@@ -9,7 +9,7 @@
 	//언어 설정
 	request.setCharacterEncoding("utf-8");
 
-	//클라이언트에서 전달된 데이터
+	// NewForm에서 전달된 데이터 저장하기
 	String num = request.getParameter("num");
 	String id = request.getParameter("id");
 	String pwd = request.getParameter("pwd");
@@ -31,7 +31,7 @@
 	//4. SQL 실행하기
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	
-	//첫번째부터 id name pwd를 ?로 처리했기 때문에 순서대로 사용
+	//? 순서대로 넣어주기
 	pstmt.setString(1, num);
 	pstmt.setString(2, id);
 	pstmt.setString(3, pwd);
@@ -49,7 +49,7 @@
 	pstmt.close();
 	con.close();
 
-	//페이지 수행하고 list페이지를 이동하기 위한 코드
+	//페이지 수행하고 list페이지로 이동하기 위한 코드
 	response.sendRedirect("LoginList.jsp");
 %>
 <!DOCTYPE html>

@@ -9,7 +9,7 @@
 	//언어 설정
 	request.setCharacterEncoding("utf-8");
 
-	//클라이언트에서 전달된 데이터
+	//NewForm에서 전달된 데이터 저장
 	String num = request.getParameter("num");
 	String bname = request.getParameter("bname");
 	String bpwd = request.getParameter("bpwd");
@@ -30,10 +30,10 @@
 	//2. SQL문(인서트로 삽입하기)
 	String sql = "insert into board(num, bname, bpwd, btype, btitle, btag, bcmt, bview, bdate) values(?, ?, ?, ?, ?, ?, 0, 0, ?)";
 	
-	//3. SQL 실행하기
+	//3. SQL문 실행하기
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	
-	//순서대로 사용
+	//순서대로 사용하여 ?에 값 넣어주기
 	pstmt.setString(1, num);
 	pstmt.setString(2, bname);
 	pstmt.setString(3, bpwd);
@@ -49,7 +49,7 @@
 	pstmt.close();
 	con.close();
 
-	//페이지 수행하고 list페이지를 이동하기 위한 코드
+	//페이지 수행하고 list페이지로 이동하기 위한 코드
 	response.sendRedirect("BoardList.jsp");
 %>
 <!DOCTYPE html>

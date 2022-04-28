@@ -16,7 +16,7 @@
 	//1-4. 커넥션 풀로 부터 커넥션 객체를 얻어냄
 	Connection con = ds.getConnection();
 	
-	//3. 연결 설정(selecte문으로 전부 id순서대로 찾아오기)
+	//3. 연결 설정(selecte문으로 전부 num순서대로 찾아오기)
 	String sql = "select * from member order by num";
 	Statement stmt = con.createStatement();
 	ResultSet rs = stmt.executeQuery(sql);
@@ -25,7 +25,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>login 데이터 조회</title>
+	<title>회원 데이터 조회</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -36,7 +36,7 @@
 	<h2 style = "text-align:center">회원 목록 조회</h2>
 <div class="container">
 	<table class="table table-bordered">
-		<caption style = "text-align:end;"> <input type="submit" value ="생성" onclick = "location.href=LoginNewForm.jsp"> </caption>
+		<caption style = "text-align:end;"> <input type="submit" value ="생성" onclick = "location.href='LoginNewForm.jsp'"> </caption>
 		<tr>
 			<th>고유 번호</th>
 			<th>아이디</th>
@@ -50,7 +50,7 @@
 		</tr>
 		<tr>
 			<%	
-				//4. 반환데이터 출력(html 보일부분 수정)
+				// 반환데이터 값 가져오기
 				while(rs.next()){
 					String num = rs.getString("num");
 					String id = rs.getString("id");
@@ -62,7 +62,7 @@
 					String email = rs.getString("email");
 					String rdate = rs.getString("rdate");
 			%>
-			<!-- updateForm에 id값 넘겨주기 -->
+			<!-- updateForm에 num값 넘겨주기 -->
 			<td><a href="LoginUpdateForm.jsp?num=<%=num %>"><%=num %></td>
 			<td><%=id %></td>
 			<td><%=pwd %></td>

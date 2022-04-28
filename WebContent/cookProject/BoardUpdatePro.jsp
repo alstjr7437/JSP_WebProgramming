@@ -9,7 +9,7 @@
 	//언어 설정
 	request.setCharacterEncoding("utf-8");
 
-	//클라이언트에서 전달된 데이터
+	//UpdateForm에서 전달된 데이터
 	String num = request.getParameter("num");
 	String bname = request.getParameter("bname");
 	String bpwd = request.getParameter("bpwd");
@@ -33,7 +33,7 @@
 	//3. SQL 실행하기
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	
-	//순서대로 사용
+	//순서대로 사용하여 수정
 	pstmt.setString(1, bname);
 	pstmt.setString(2, bpwd);
 	pstmt.setString(3, btype);
@@ -59,6 +59,6 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<%=bname %>님의  데이터가 입력되었습니다!
+	<%=bname %>님의  데이터가 수정되었습니다!
 </body>
 </html>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>로그인</title>
+  <title>회원가입</title>
   <meta charset="utf-8">
 <body>
 
@@ -51,8 +51,10 @@
             </td>
         </tr>	
     </table>
-    <input type="submit" value="가입">
+    <input type="submit" value="가입하기"> 
 </form>
+<br>
+    <input type="submit" value="조회하기" onclick="location.href='LoginList.jsp'">
 
 </body>
 </html>
