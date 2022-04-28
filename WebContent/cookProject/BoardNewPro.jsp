@@ -10,10 +10,13 @@
 	request.setCharacterEncoding("utf-8");
 
 	//클라이언트에서 전달된 데이터
-	String id = request.getParameter("id");
-	String name = request.getParameter("name");
-	String pwd = request.getParameter("pwd");
-	
+	String num = request.getParameter("num");
+	String bname = request.getParameter("bname");
+	String bpwd = request.getParameter("bpwd");
+	String btype = request.getParameter("btype");
+	String btitle = request.getParameter("btitle");
+	String btag = request.getParameter("btag");
+	String bdate = request.getParameter("bdate");
 	//1. DBCP로 변경
 	//1-1. Context 객체 얻기
 	Context initCtx = new InitialContext();
@@ -24,26 +27,30 @@
 	//1-4. 커넥션 풀로 부터 커넥션 객체를 얻어냄
 	Connection con = ds.getConnection();
 	
-	//3. SQL문(인서트로 삽입하기)
-	String sql = "insert into login(id, name, pwd) values(?, ?, ?)";
+	//2. SQL문(인서트로 삽입하기)
+	String sql = "insert into board(num, bname, bpwd, btype, btitle, btag, bcmt, bview, bdate) values(?, ?, ?, ?, ?, ?, 0, 0, ?)";
 	
-	//4. SQL 실행하기
+	//3. SQL 실행하기
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	
-	//첫번째부터 id name pwd를 ?로 처리했기 때문에 순서대로 사용
-	pstmt.setString(1, id);
-	pstmt.setString(2, name);
-	pstmt.setString(3, pwd);
+	//순서대로 사용
+	pstmt.setString(1, num);
+	pstmt.setString(2, bname);
+	pstmt.setString(3, bpwd);
+	pstmt.setString(4, btype);
+	pstmt.setString(5, btitle);
+	pstmt.setString(6, btag);
+	pstmt.setString(7, bdate);
 	
 	//변경하는 쿼리를 쓸때 executeUpdate를 이용
 	int i = pstmt.executeUpdate();
 	
-	//5.객체 해지
+	//4.객체 해지
 	pstmt.close();
 	con.close();
 
 	//페이지 수행하고 list페이지를 이동하기 위한 코드
-	response.sendRedirect("list.jsp");
+	response.sendRedirect("BoardList.jsp");
 %>
 <!DOCTYPE html>
 <html>
@@ -52,6 +59,6 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<%=i %>개의 데이터가 입력되었습니다!
+	<%=bname %>님의  데이터가 입력되었습니다!
 </body>
 </html>

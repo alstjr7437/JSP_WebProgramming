@@ -1,4 +1,4 @@
-<%@page import="javax.sql.DataSource"%>
+ <%@page import="javax.sql.DataSource"%>
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="javax.naming.Context"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -16,8 +16,8 @@
 	//1-4. 커넥션 풀로 부터 커넥션 객체를 얻어냄
 	Connection con = ds.getConnection();
 	
-	//3. 연결 설정(selecte문으로 전부 id순서대로 찾아오기)
-	String sql = "select * from login order by id";
+	//2. 연결 설정(selecte문으로 전부 num순서대로 찾아오기)
+	String sql = "select * from board order by num";
 	Statement stmt = con.createStatement();
 	ResultSet rs = stmt.executeQuery(sql);
 %>
@@ -32,33 +32,59 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-	<h2 style = "text-align:center">회원 목록 조희</h2>
+<body><div><h2 style = "text-align:center">게시판 조회</h2></div>
+	
 <div class="container">
 	<table class="table table-bordered">
+	<caption style = "text-align:end;"> <input type="submit" value ="생성" onclick = "location.href=BoardNewForm.jsp"> </caption>
+	<thead>
 		<tr>
-			<th>id</th>
-			<th>name</th>
-			<th>pwd</th>
+			<th>고유번호</th>
+			<th>작성자</th>
+			<th>비밀번호</th>
+			<th>유형</th>
+			<th>제목</th>
+			<th>내용</th>
+			<th>댓글</th>
+			<th>조회수</th>
+			<th>작성일</th>
 		</tr>
+	</thead>
+	<tbody>
 		<tr>
 			<%	
 				//4. 반환데이터 출력(html 보일부분 수정)
 				while(rs.next()){
-					String id = rs.getString("id");
-					String pwd = rs.getString("pwd");
-					String name = rs.getString("name");
+					String num = rs.getString("num");
+					String bname = rs.getString("bname");
+					String bpwd = rs.getString("bpwd");
+					String btype = rs.getString("btype");
+					String btitle = rs.getString("btitle");
+					String btag = rs.getString("btag");
+					String bcmt = rs.getString("bcmt");
+					String bview = rs.getString("bview");
+					String bdate = rs.getString("bdate");
 			%>
 			<!-- updateForm에 id값 넘겨주기 -->
-			<td><a href="updateForm.jsp?id=<%=id %>"><%=id %></td>
-			<td><%=name %></td>
-			<td><%=pwd %></td>
+			<td><a href="BoardUpdateForm.jsp?num=<%=num %>"><%=num %></td>
+			<td><%=bname %></td>
+			<td><%=bpwd %></td>
+			<td><%=btype %></td>
+			<td><%=btitle %></td>
+			<td><%=btag %></td>
+			<td><%=bcmt %></td>
+			<td><%=bview %></td>
+			<td><%=bdate %></td>
 		</tr>
+	</tbody>
 <%
 				}
 %>
 	</table>
 </div>
+
+
+
 <%
 	//5. 객체 해지
 	rs.close();
