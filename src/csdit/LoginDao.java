@@ -1,7 +1,10 @@
 package csdit;
 
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -50,5 +53,38 @@ public class LoginDao {
 			e.printStackTrace();
 		}
 	}
+	//list() : 데이터 조회
+	//메소드 작성 시 고려사항
+	//1. public / private
+	//2. 반환 데이터(output)
+	//3. 입력 데이터(input)
+	public ArrayList<LoginDto> list() {
+		ArrayList<LoginDto> dtos = new ArrayList<LoginDto>()	;
+		String sql = "select id, name, pwd from login";
+		try {
+			Connection con = getConnection();					//커넥션 얻기
+			java.sql.Statement stmt = con.createStatement();	//SQL 실행
+			{
+				ResultSet rs = stmt.executeQuery(sql);
+				
+				while(rs.next()) {
+					//1. 레코드셋에서 데이터를 가져온다.
+					String id = rs.getString("id");
+					String name = rs.getString("name");
+					String pwd = rs.getString("pwd");
+					//2. 그 데이터들을 LoginDto를 만든다.
+					LoginDto dto = new LoginDto(id, name, pwd);
+					//3. 그 LoginDto를 배열(ArrayList)에 추가한다.
+					dtos.add(dto);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dtos;
+		
+	}
+	
+	
 
 }
