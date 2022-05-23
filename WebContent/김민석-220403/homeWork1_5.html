@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<form action="homeWork1_6.jsp" method = "post">
+	<h1>음식 사이트 회원가입</h1>
+    <table>
+        <tr>
+            <td>아이디</td>
+            <td><input type = "text" name="id"></td>
+        </tr>
+
+        <tr>
+            <td>비밀번호</td>
+            <td><input type="password" name = "pw"></td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td><input type="text" name = "name"></td>
+        </tr>
+        <tr>
+        	<!-- 다중 입력으로 가능한 요리를 다 체크하기 -->
+            <td>가능한 요리</td>
+            <td>
+                <input type="checkbox" name = 'lang' value = "라면">라면
+                <input type="checkbox" name = 'lang' value = "김치볶음밥">김치볶음밥
+                <input type="checkbox" name = 'lang' value = "김치찌개">김치찌개
+                <input type="checkbox" name = 'lang' value = "계란후라이">계란후라이        
+            </td>
+        </tr>
+        <tr>
+        	<!-- 둘중 하나를 체크하면 하나는 풀림 (radio로 해서) -->
+            <td>성별</td>
+            <td>
+                <input type="radio" name = "gender" value="남" checked>남
+                <input type="radio" name = "gender" value="여">여
+            </td>
+        </tr>
+        <tr>
+        	<!-- 가입경로 중에 선택 가능 -->
+            <td>가입경로</td>
+            <td>
+                <select name = "intro">
+                    <option value="웹검색" selected>웹검색</option>
+                    <option value="지인소개">지인소개</option>
+                    <option value="기타">기타</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>주소지</td>
+            <td>
+                <select name = "addr" size="4">
+                    <option value = "서울" selected>서울</option>
+                    <option value="경기">경기</option>
+                    <option value = "인천">부산</option>
+                    <option value="기타">기타</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+        	<!-- 수상경력을 적을 수 있는 칸 -->
+            <td>수상 경력</td>
+            <td>
+                <textarea name = "pri" rows="6" cols = "22"></textarea>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="가입">
+</form>
+
+</body>
+</html>

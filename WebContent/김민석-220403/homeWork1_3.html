@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<form action="homeWork1_4.jsp" method="post">
+	<table>
+		<tr>
+			<!-- 카테고리로 텍스트를 클릭하면 여러 종류가 나옴 -->
+			<td>카테고리</td>
+			<td><input type = "text" name = "cate" list = "cate"></td>
+			<datalist id = "cate">
+				<option value = "운동">
+				<option value = "게임">
+				<option value = "공부">
+				<option value = "기타">
+			</datalist>
+			<td>제  목</td>
+			<td><input type="text" name = "name"></td>
+		</tr>
+		<tr>
+			<td>작성자</td>
+			<td><input type="text" name = "human"></td>
+			<td>비밀번호</td>
+			<td><input type="password" name = "password"></td>
+		</tr>
+	</table>
+	<!-- 내용은  textarea로 크게 만들어줌 -->
+	내 용
+	<br>
+	<textarea cols = "100" rows = "20" name = "text"></textarea>
+    <br>
+    <input type="submit" value="글쓰기"> 
+</form>
+  
+</body>
+</html>
