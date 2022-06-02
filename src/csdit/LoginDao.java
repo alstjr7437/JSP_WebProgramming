@@ -18,6 +18,7 @@ import javax.sql.DataSource;
  * 변경 이력 : 
  * - getConnection : dbcp에서 Connection 얻어오기
  * - list() : login테이블에서 가져온 레코드를 dto로 만들어 전달
+ * - checkUser() : 유효한  사용자인지 아닌지 판별하는 메소드
  */
 public class LoginDao {
 	private Connection getConnection() throws Exception{
@@ -84,7 +85,36 @@ public class LoginDao {
 		return dtos;
 		
 	}
-	
+	//메소드 작성 시 고려사항
+	//1. public / private
+	//2. 반환 데이터(output)
+	//3. 입력 데이터(input)
+	public int checkUser(String id, String pwd){
+		int check = 0;
+		String sql = "select pwd from login where id = ? and pwd = ?";
+		try (
+			Connection con = getConnection();					//커넥션 얻기
+			PreparedStatement pstmt = con.prepareStatement(sql);	//SQL 실행
+		)
+			{
+				pstmt.setNString(1, id);
+				pstmt.setNString(2, pwd);
+				
+				try(ResultSet rs = pstmt.executeQuery();) {
+					if(rs.next()) {
+						check = 1;
+					} else {
+						check = 0;
+					}
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return check;
+	}
 	
 
 }
