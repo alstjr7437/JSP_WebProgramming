@@ -1,4 +1,4 @@
--- 데이터베이스 생성 : jinsookdb는 데이터베이스명
+-- 데이터베이스 생성 : alstjrdb는 데이터베이스명
 CREATE DATABASE alstjrdb;
 
 -- 사용자 생성
