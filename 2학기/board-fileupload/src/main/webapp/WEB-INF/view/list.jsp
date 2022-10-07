@@ -26,14 +26,15 @@
 			<th>subject</th>
 			<th>writer</th>
 			<th>regDate</th>
+			<th>filename</th>
 		</tr>
-
 		<c:forEach var='dto' items='${dtos}'>
 			<tr>
-				<td>${dto.bcode }</a></td>
+				<td>${dto.bcode}</a></td>
 				<td><a href="updateForm.do?bcode=${dto.bcode}">${dto.subject}</a></td>
 				<td>${dto.writer}</td>
 				<td><fmt:formatDate value="${dto.regDate}"/></td>
+				<td><a download href="../../../WebProject/alstjr-workspace/board-fileupload/src/main/webapp/uploadfiles/${dto.filename}">${dto.filename}</a></td>
 			</tr>
 		</c:forEach>
 	</table>

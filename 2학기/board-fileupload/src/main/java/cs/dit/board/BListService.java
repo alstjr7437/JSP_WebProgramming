@@ -15,7 +15,9 @@ public class BListService implements BoardService {
 		int p = 1;
 		int numOfRecords = 10;
 		int numOfPages = 5;
-		
+
+	    String path = System.getProperty("user.dir");
+	    System.out.println("현재 작업 경로: " + path);
 		
 		String page = request.getParameter("p");
 		if(page != null && !page.equals("")) {

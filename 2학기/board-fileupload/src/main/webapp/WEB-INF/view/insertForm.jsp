@@ -16,7 +16,7 @@
 		<br>
 		<h2 class="text-center font-weight-bold">게시글 등록</h2>
 		<hr/>
-		<form action="insert.do" method="post">
+		<form action="insert.do" method="post" enctype="multipart/form-data">
 		  <div class="form-group">
 	      <label for="subject">subject :</label>
 	      <input type="text" class="form-control" id="subject" name="subject">
@@ -29,7 +29,10 @@
 	      <label for="writer">writer :</label>
 	      <input type="text" class="form-control" id="writer" name="writer">
 	    </div>
-
+	    <div class="form-group">
+	      <label for="filename">filename :</label>
+	      <input type="file" class="form-control" id="filename" name="filename">
+	    </div>
 	    <div class="text-center">
 				<button  type="submit" class="btn btn-secondary">등록</button>
 			</div>

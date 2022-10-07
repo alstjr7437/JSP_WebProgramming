@@ -16,9 +16,10 @@ public class BoardDao {
 	/**======================================================================
 	 * 패키지명 : cs.dit.board
 	 * 파일명   : BoardDao.java
-	 * 작성자  : 
-	 * 변경이력 : 
+	 * 작성자  : 김민석
+	 * 변경이력
 	 *   2022-9-11
+	 *   2022-10-06
 	 * 프로그램 설명 : board 테이블의 내용과 연동하여 게시글 관리
 	*======================================================================*/
 
@@ -36,17 +37,17 @@ public class BoardDao {
 	}
 	
 	public void insert(BoardDto dto) {
-		String sql = "INSERT INTO board(SUBJECT, CONTENT, WRITER, REGDATE) VALUES(?, ?, ?, SYSDATE())";
+		String sql = "INSERT INTO board1(SUBJECT, CONTENT, WRITER, REGDATE, filename) VALUES(?, ?, ?, SYSDATE(), ?)";
 		
 		try (
 			Connection con = getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 		)
 		{   
-			System.out.println(pstmt);
 			pstmt.setString(1,  dto.getSubject());
 			pstmt.setString(2,  dto.getContent());
 			pstmt.setString(3,  dto.getWriter());
+			pstmt.setString(4, dto.getFilename());
 			
 			//1. insert 문을 실행하는 코드를 작성하세요
 			
@@ -58,7 +59,7 @@ public class BoardDao {
 	}
 	
 	public ArrayList<BoardDto> list(int page, int numOfRecords){
-		String sql = "SELECT * FROM board order by bcode desc limit ?,?";
+		String sql = "SELECT * FROM board1 order by bcode desc limit ?,?";
 		ArrayList<BoardDto> dtos = new ArrayList<BoardDto>();
 		
 		try (	Connection con = getConnection();
@@ -78,6 +79,7 @@ public class BoardDao {
 						dto.setContent(rs.getString("content"));
 						dto.setWriter(rs.getString("writer"));
 						dto.setRegDate(rs.getDate("regDate"));
+						dto.setFilename(rs.getString("filename"));
 						
 						//2. 위에서 만들어진 dto를 ArrayList 인 dtos에 차례로 입력하세요.
 			            dtos.add(dto);	
@@ -93,7 +95,7 @@ public class BoardDao {
 	}
 	public int recordCount() {
 		int count = 0;
-		String sql = "select count(bcode) from board";
+		String sql = "select count(bcode) from board1";
 		
 		try (	Connection con = getConnection();
 				Statement stmt = con.createStatement();
@@ -112,7 +114,7 @@ public class BoardDao {
 	public BoardDto selectOne(int bcode) {
 		
 		//3. 전달받은 bcode를 가진 레코드를 검색하는 select 문을 아래에 작성하세요.
-		String sql = "select * from board where bcode = ?";
+		String sql = "select * from board1 where bcode = ?";
 		
 		
 		BoardDto dto = new BoardDto();
@@ -143,7 +145,7 @@ public class BoardDao {
 	}
 	
 	public void update(BoardDto dto) {
-		String sql = "UPDATE board SET subject = ?, content = ?, writer = ?, regDate = ? WHERE bcode =?";
+		String sql = "UPDATE board1 SET subject = ?, content = ?, writer = ?, regDate = ? WHERE bcode =?";
 		
 		try (
 			Connection con = getConnection();
@@ -164,7 +166,7 @@ public class BoardDao {
 	}
 	
 	public void delete(int bcode) {
-		String sql = "DELETE FROM board WHERE bcode =?";
+		String sql = "DELETE FROM board1 WHERE bcode =?";
 		
 		try (
 			Connection con = getConnection();
