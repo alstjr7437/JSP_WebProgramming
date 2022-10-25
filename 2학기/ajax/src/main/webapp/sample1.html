@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Ajax 실습</title>
+
+	<script>
+		function getData() {
+				var xhr = new XMLHttpRequest();
+			
+				xhr.onreadystatechange = function(){
+					if(this.readyState == 4){
+						document.getElementById("myAjax").innerHTML = this.responseText;
+					}
+				};
+				xhr.open("POST", "myTest.txt", true);
+				xhr.send();
+		}
+	
+	</script>
+</head>
+<body>
+	<input type = "button" value = "테스트" onclick = "getData();">
+	<div id = "myAjax">
+	
+	</div>
+</body>
+</html>	

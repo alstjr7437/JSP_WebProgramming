@@ -152,15 +152,8 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="member-student" path="/member-student" reloadable="true" source="org.eclipse.jst.jee.server:member-student"/> 
-      <Resource
-       name="jdbc/myoracle"
-       auth="Container"
-       type="javax.sql.DataSource"
-       driverClassName="oracle.jdbc.driver.OracleDriver"
-       username="alstjr"
-       password="1111"
-       url="jdbc:oracle:thin:@localhost:1521:xe"/></Host>
+       
+      <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" name="jdbc/myoracle" password="1111" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="alstjr"/><Context docBase="board-comment" path="/board-student" reloadable="true" source="org.eclipse.jst.jee.server:board-comment"/></Host>
     </Engine>
   </Service>
 </Server>
