@@ -34,7 +34,7 @@
 				<td><a href="updateForm.do?bcode=${dto.bcode}">${dto.subject}</a></td>
 				<td>${dto.writer}</td>
 				<td><fmt:formatDate value="${dto.regDate}"/></td>
-				<td><a download href="../../../WebProject/alstjr-workspace/board-fileupload/src/main/webapp/uploadfiles/${dto.filename}">${dto.filename}</a></td>
+				<td><a download href="uploadfiles/${dto.filename}">${dto.filename}</a></td>
 			</tr>
 		</c:forEach>
 	</table>

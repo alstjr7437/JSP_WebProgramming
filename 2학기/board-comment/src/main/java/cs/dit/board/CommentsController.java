@@ -18,11 +18,11 @@ public class CommentsController extends HttpServlet {
     	System.out.println(com);
     	
     	if(com != null && com.equals("cList")) {
-    		System.out.println("안녕");
     		CommentsService service = new CommentsService();
     		service.cList(request, response);
     	} else if(com != null && com.equals("cInsert")) { 
-    		System.out.println("하세요");
+    		CommentsService service = new CommentsService();
+    		service.cInsert(request, response);
     	}
     	
 	}

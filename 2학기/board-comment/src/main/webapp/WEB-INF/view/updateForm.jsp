@@ -9,7 +9,7 @@
 
 <!DOCTYPE html>
 <html>
-<head>
+<head>ㅇ
 	<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -46,7 +46,49 @@
 				</td>
 			</tr>
 		</table><br><br>
-		
+		<script>
+		int bcode = document.getElementById("bcode")
+		function cList(){
+			var xhr = new XMLHttpRequest();
+			var table = document.getElementById("commentsTable");
+			xhr.onreadystatechange = function(){
+				
+				if(xhr.readyState == 4 && xhr.status == 400){
+					var list = JSON.parse(this.responseText);
+
+					for(i in list){
+						var row = table.insertRow(0);
+						var c1 = row.insertCell(0);
+						var c2 = row.insertCell(1);
+						var c3 = row.insertCell(2);
+						c1.innerHTML = list[i].ccode;
+						c2.innerHTML = list[i].content;
+						c3.innerHTML = list[i].regdate;
+					}
+				}
+			};
+			xhr.open("POST", "/board-comment/cList.ct", true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoder");
+			xhr.send("bcode="+ bcode);
+		}
+		function cInsert() {
+			var xhr = new XMLHttpRequest();
+			var content = document.getElementById("comments").value;
+			xhr.onreadystatechange = function(){
+				
+				if(xhr.readyState == 4 && xhr.status == 400){
+					document.getElementById("comments").innerHTML = "";
+					cList();
+					
+				}
+			};
+			xhr.open("POST", "/board-comment/cInsert.ct", true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoder");
+			xhr.send("bcode="+ bcode + '&content=' + content);
+			
+		}
+		window.load = function() {cList();}
+		</script>
 		<table class="table table-striped table-hover">
 			<tr>
 				<td>한줄 댓글 : </td>

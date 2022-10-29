@@ -58,4 +58,21 @@ public class CommentsDao {
 			}
 		return list;
 	}
+	public void insert(CommentsDto dto) {
+		String sql = "{call proc_comments3(?,?)}";
+		
+		try (
+			Connection con = getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+		)
+		{   
+			pstmt.setInt(1,  dto.getBcode());
+			pstmt.setString(2,  dto.getContent());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
