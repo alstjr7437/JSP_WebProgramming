@@ -47,7 +47,7 @@
 			</tr>
 		</table><br><br>
 		<script>
-		int bcode = document.getElementById("bcode")
+		var bcode = document.getElementById("bcode")
 		function cList(){
 			var xhr = new XMLHttpRequest();
 			var table = document.getElementById("commentsTable");
